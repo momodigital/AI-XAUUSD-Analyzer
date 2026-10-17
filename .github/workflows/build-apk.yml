@@ -1,31 +1,19 @@
-name: Build Release APK
-
-on:
-  push:
-    tags:
-      - '*'
-
+name: Build Android APK
+on: [push, pull_request, workflow_dispatch]
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
-
-      - name: Setup JDK
-        uses: actions/setup-java@v1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
         with:
-          java-version: 17
-
-      - name: Make Gradle Executable
-        run: chmod +x ./gradlew
-
-      - name: Build Release APK
-        run: ./gradlew assembleRelease
-
-      - name: Upload APK Artifact
-        uses: actions/upload-artifact@v3
+          java-version: '17'
+          distribution: 'temurin'
+          cache: gradle
+      - run: chmod +x android/gradlew
+      - working-directory: android
+        run: ./gradlew assembleDebug --no-daemon
+      - uses: actions/upload-artifact@v4
         with:
-          name: app-release-apk
-          path: app/build/outputs/apk/release/app-release.apk
+          name: AI_Forex_XAUUSD_Analyzer_Debug_APK
+          path: android/app/build/outputs/apk/debug/*.apk
