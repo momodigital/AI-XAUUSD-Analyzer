@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>TradingView XAUUSD Chart</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #0E1117;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    #tv_chart_container {
+      width: 100%;
+      height: 100%;
+    }
+    .loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #0E1117;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #94A3B8;
+      font-size: 13px;
+      z-index: 10;
+      transition: opacity 0.3s ease;
+    }
+    .spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid rgba(41, 98, 255, 0.2);
+      border-top-color: #2962FF;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 12px;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+</head>
+<body>
+  <div id="loader" class="loading-overlay">
+    <div class="spinner"></div>
+    <span>Memuat Chart XAUUSD (OANDA)...</span>
+  </div>
+  <div id="tv_chart_container"></div>
+
+  <script type="text/javascript">
+    // Helper to get URL query params
+    function getQueryParam(param, defaultValue) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param) || defaultValue;
+    }
+
+    const symbol = getQueryParam("symbol", "OANDA:XAUUSD");
+    const interval = getQueryParam("interval", "60");
+    const studiesParam = getQueryParam("studies", "RSI@tv-basicstudies,MASimple@tv-basicstudies");
+    
+    // Parse studies from query string (comma-separated)
+    const studiesList = studiesParam ? studiesParam.split(",").filter(Boolean) : [];
+
+    new TradingView.widget({
+      "autosize": true,
+      "symbol": symbol,
+      "interval": interval,
+      "timezone": "Asia/Jakarta",
+      "theme": "dark",
+      "style": "1", // Candlestick
+      "locale": "id",
+      "toolbar_bg": "#1A1F2C",
+      "enable_publishing": false,
+      "hide_top_toolbar": false,
+      "hide_legend": false,
+      "save_image": false,
+      "container_id": "tv_chart_container",
+      "studies": studiesList,
+      "loading_screen": {
+        "backgroundColor": "#0E1117",
+        "foregroundColor": "#2962FF"
+      },
+      "overrides": {
+        "paneProperties.background": "#0E1117",
+        "paneProperties.vertGridProperties.color": "rgba(42, 46, 57, 0.5)",
+        "paneProperties.horzGridProperties.color": "rgba(42, 46, 57, 0.5)",
+        "symbolWatermarkProperties.transparency": 90,
+        "scalesProperties.textColor": "#94A3B8",
+        "mainSeriesProperties.candleStyle.upColor": "#22C55E",
+        "mainSeriesProperties.candleStyle.downColor": "#EF4444",
+        "mainSeriesProperties.candleStyle.drawWick": true,
+        "mainSeriesProperties.candleStyle.drawBorder": true,
+        "mainSeriesProperties.candleStyle.borderColor": "#374151",
+        "mainSeriesProperties.candleStyle.borderUpColor": "#22C55E",
+        "mainSeriesProperties.candleStyle.borderDownColor": "#EF4444",
+        "mainSeriesProperties.candleStyle.wickUpColor": "#22C55E",
+        "mainSeriesProperties.candleStyle.wickDownColor": "#EF4444"
+      }
+    });
+
+    // Remove loader once frame loads
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        const loader = document.getElementById("loader");
+        if (loader) {
+          loader.style.opacity = "0";
+          setTimeout(() => loader.style.display = "none", 300);
+        }
+      }, 1000);
+    });
+  </script>
+</body>
+</html>

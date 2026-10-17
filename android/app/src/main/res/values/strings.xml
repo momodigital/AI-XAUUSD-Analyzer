@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">AI XAUUSD Analyzer</string>
+    <string name="top_bar_title">XAUUSD • OANDA</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_refresh">Refresh Chart</string>
+    
+    <!-- Timeframe & Indicators -->
+    <string name="label_timeframe">Timeframe</string>
+    <string name="label_indicators">Indikator</string>
+    <string name="btn_screenshot_chart">📸 Screenshot Chart</string>
+    <string name="dialog_select_indicators">Pilih Indikator Teknikal</string>
+    
+    <!-- Chat Section -->
+    <string name="chat_hint">Tanya AI tentang chart/forex…</string>
+    <string name="btn_send">Kirim</string>
+    <string name="btn_attach">Lampirkan Gambar</string>
+    <string name="ai_analyzing">AI sedang menganalisis chart…</string>
+    <string name="analysis_empty_prompt_warning">Silakan ketik pertanyaan atau gunakan prompt template.</string>
+    
+    <!-- BottomSheet Modal -->
+    <string name="bottom_sheet_title">Perintah Analisa Chart</string>
+    <string name="bottom_sheet_prompt_hint">Contoh: Analisa pola candlestick saat ini, hitung resistance terdekat, dan berikan rekomendasi entry sell limit dengan SL dan TP.</string>
+    <string name="btn_analyze_with_ai">Analisa dengan AI</string>
+    
+    <!-- Settings Screen -->
+    <string name="settings_title">Pengaturan AI</string>
+    <string name="section_ai_model">Model AI</string>
+    <string name="section_creativity">Kreativitas AI</string>
+    <string name="section_system_instruction">System Instruction (Peran AI)</string>
+    <string name="section_test_endpoint">Uji Endpoint</string>
+    
+    <string name="default_system_instruction">Kamu adalah analis forex profesional yang ahli membaca chart TradingView. Jawab ringkas, terstruktur, dan sertakan level harga konkret jika terlihat di chart.</string>
+    <string name="btn_reset_default">Reset ke Default</string>
+    <string name="btn_test_endpoint">Test Endpoint</string>
+    <string name="btn_cancel">Batal</string>
+    <string name="btn_save">Simpan</string>
+    <string name="settings_saved_toast">Settings berhasil disimpan</string>
+    
+    <!-- Error & Validation Messages -->
+    <string name="error_api_key_empty">API Key belum diisi. Harap atur di menu Settings.</string>
+    <string name="error_network_failed">Koneksi jaringan gagal. Ketuk untuk mencoba lagi.</string>
+    <string name="retry">Coba Lagi</string>
+    <string name="connection_ok">Koneksi OK! Latency: %1$d ms</string>
+</resources>

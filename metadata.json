@@ -1,0 +1,6 @@
+{
+  "name": "AI XAUUSD Analyzer",
+  "description": "Aplikasi Android native Jetpack Compose & simulator interaktif untuk analisa teknikal XAUUSD (Gold) bertenaga AI multimodal (Gemini, OpenAI, Groq, OpenRouter) dengan TradingView chart, auto screenshot, dan Clean Architecture.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
